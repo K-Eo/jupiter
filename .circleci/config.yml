@@ -1,0 +1,113 @@
+version: 2
+
+config: &default
+  working_directory: ~/reddhub
+  docker:
+    - image: circleci/node:8.11.4-stretch
+
+jobs:
+  jest:
+    <<: *default
+    steps:
+      - checkout
+
+      - run:
+          name: Which node?
+          command: node -v
+
+      - run:
+          name: Which yarn?
+          command: yarn -v
+
+      - restore_cache:
+          name: Restore yarn package cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: yarn install
+
+      - save_cache:
+          name: Save yarn packages cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - run:
+          name: Jest
+          command: yarn test
+
+  prettier:
+    <<: *default
+    steps:
+      - checkout
+
+      - run:
+          name: Which node?
+          command: node -v
+
+      - run:
+          name: Which yarn?
+          command: yarn -v
+
+      - restore_cache:
+          name: Restore yarn package cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: yarn install
+
+      - save_cache:
+          name: Save yarn packages cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - run:
+          name: Prettier
+          command: yarn prettier
+
+  deploy:
+    <<: *default
+    steps:
+      - checkout
+
+      - restore_cache:
+          name: Restore yarn package cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: yarn install
+
+      - save_cache:
+          name: Save yarn packages cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - run:
+          name: Build
+          command: yarn build
+
+      - run:
+          name: Deploy
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - jest
+      - prettier
+      - deploy:
+          requires:
+            - jest
+            - prettier
+          filters:
+            branches:
+              only: master
