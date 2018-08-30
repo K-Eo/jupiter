@@ -11,6 +11,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier -l 'src/**/*.{js,ts,css,scss,json,md}'"
+  },
+  "devDependencies": {
+    "firebase-tools": "^4.2.1",
+    "prettier": "^1.14.2"
   }
 }
