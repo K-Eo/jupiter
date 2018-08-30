@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SignIn from './SignIn'
 
 class App extends Component {
   render() {
@@ -11,8 +12,7 @@ class App extends Component {
           </h5>
 
           <div className="mt-5">
-            <button className="btn btn-primary btn-block">Facebook</button>
-            <button className="btn btn-light btn-block">Google</button>
+            <SignIn />
           </div>
         </div>
       </div>
