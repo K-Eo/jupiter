@@ -5,13 +5,15 @@ import Home from './Home'
 
 import { createAsync } from '../../trips/actions'
 
+const mapStateToProps = state => state.trips.create
+
 const mapDispatchToProps = dispatch => ({
   createTrip: () => dispatch(createAsync()),
 })
 
 export default compose(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )
 )(Home)
