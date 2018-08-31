@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Driver from './Driver'
+import Driver from './drivers/components/Driver'
 import Passenger from './passengers/components/Passenger'
 import SignIn from './auth/components/SignIn'
 
