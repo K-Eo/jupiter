@@ -1,5 +1,6 @@
-import { db } from '../firebase'
+import * as constants from './constants'
 import * as types from './types'
+import { db } from '../firebase'
 
 const login = userId => ({
   type: types.LOGIN,
@@ -20,3 +21,13 @@ export const persistAsync = user => {
     }
   }
 }
+
+export const passengerMode = () => ({
+  type: types.MODE,
+  mode: constants.PASSENGER,
+})
+
+export const driverMode = () => ({
+  type: types.MODE,
+  mode: constants.DRIVER,
+})

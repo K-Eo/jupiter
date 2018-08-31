@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import DriverSignIn from './DriverSignIn'
-import PassengerSignIn from './PassengerSignIn'
+import DriverSignIn from './DriverSignInContainer'
+import PassengerSignIn from './PassengerSignInContainer'
 
 const SignIn = () => {
   return (
