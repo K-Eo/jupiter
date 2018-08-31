@@ -1,17 +1,9 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import DriverSignIn from './DriverSignInContainer'
+import NoMatch from '../../components/NoMatch'
 import PassengerSignIn from './PassengerSignInContainer'
-
-const NoMatch = () => {
-  return <Redirect to="/" push={false} />
-}
 
 const SignIn = () => {
   return (
