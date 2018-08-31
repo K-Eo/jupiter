@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = () => {
+const Home = ({ createTrip }) => {
   return (
     <React.Fragment>
       <div className="container">
@@ -17,7 +17,10 @@ const Home = () => {
 
       <nav className="bg-white border-top py-4">
         <div className="container">
-          <button className="btn btn-success btn-block btn-lg font-weight-bold">
+          <button
+            className="btn btn-success btn-block btn-lg font-weight-bold"
+            onClick={createTrip}
+          >
             Pedir Taxi
           </button>
         </div>
