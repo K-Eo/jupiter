@@ -33,3 +33,30 @@ export const createAsync = () => {
     }
   }
 }
+
+export const cancelRequest = () => ({
+  type: types.CANCEL_REQUEST,
+})
+
+export const cancelSuccess = () => ({
+  type: types.CANCEL_SUCCESS,
+})
+
+export const cancelFailure = () => ({
+  type: types.CANCEL_FAILURE,
+})
+
+export const cancelAsync = id => {
+  return async dispatch => {
+    try {
+      dispatch(cancelRequest())
+
+      await db.ref('trips/' + id).remove()
+
+      dispatch(cancelSuccess())
+    } catch (e) {
+      console.log(e)
+      dispatch(cancelFailure())
+    }
+  }
+}
