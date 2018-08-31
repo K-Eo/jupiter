@@ -14,7 +14,8 @@ export const auth = (state = authInitialState, action) => {
     case types.LOGIN:
       return Object.assign({}, state, { signedIn: true, userId: action.userId })
     case types.LOGOUT:
-    default:
       return { mode: constants.PASSENGER, signedIn: false, userId: null }
+    default:
+      return state
   }
 }
