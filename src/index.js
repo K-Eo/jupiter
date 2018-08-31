@@ -29,11 +29,25 @@ firebase.auth().onAuthStateChanged(state => {
   }
 })
 
+const rootElement = document.getElementById('root')
+
 ReactDOM.render(
   <Provider store={store}>
     <Terminal />
   </Provider>,
-  document.getElementById('root')
+  rootElement
 )
+
+if (process.env.NODE_ENV === 'development' && module.hot) {
+  module.hot.accept('./Terminal', () => {
+    const NextTerminal = require('./Terminal').default
+    ReactDOM.render(
+      <Provider store={store}>
+        <NextTerminal />
+      </Provider>,
+      rootElement
+    )
+  })
+}
 
 registerServiceWorker()
