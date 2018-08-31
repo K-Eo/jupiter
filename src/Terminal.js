@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import SignIn from './SignIn'
+import SignIn from './auth/SignIn'
 import Passenger from './Passenger'
 
 const Terminal = ({ signedIn }) => {

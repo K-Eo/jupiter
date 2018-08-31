@@ -1,8 +1,9 @@
 import React from 'react'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import firebase, { uiConfig } from './firebase'
+import firebase, { uiConfig } from '../firebase'
+import { Link } from 'react-router-dom'
 
-const SignIn = props => {
+const PassengerSignIn = () => {
   return (
     <div className="d-flex justify-content-center align-items-center h-100">
       <div className="container">
@@ -15,12 +16,10 @@ const SignIn = props => {
             firebaseAuth={firebase.auth()}
           />
 
-          <div className="border-top border-secondary mt-5 mb-2 w-50 mx-auto" />
-
-          <div className="text-center">
-            <a href="/" className="text-secondary">
+          <div className="text-center mt-4">
+            <Link to="/drivers" className="text-secondary">
               Conductores
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -28,4 +27,4 @@ const SignIn = props => {
   )
 }
 
-export default SignIn
+export default PassengerSignIn
