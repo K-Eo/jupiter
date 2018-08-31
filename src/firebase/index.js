@@ -18,7 +18,10 @@ export const db = firebase.database()
 export const uiConfig = {
   callbacks: { signInSuccessWithAuthResult: () => false },
   signInFlow: 'popup',
-  signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+  signInOptions: [
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+  ],
 }
 
 export default firebase
