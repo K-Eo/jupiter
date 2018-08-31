@@ -6,7 +6,7 @@ import Terminal from './Terminal'
 import configure from './stores/default'
 import firebase from './firebase'
 import registerServiceWorker from './registerServiceWorker'
-import { persistAsync, logout } from './users/actions'
+import { persistAsync, logout } from './auth/actions'
 
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.css'
