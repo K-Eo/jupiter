@@ -1,13 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import SignIn from './auth/components/SignIn'
-import Passenger from './Passenger'
 
-const Terminal = ({ signedIn }) => {
-  if (signedIn) {
-    return <Passenger />
-  } else {
+import Driver from './Driver'
+import Passenger from './Passenger'
+import SignIn from './auth/components/SignIn'
+
+import { DRIVER } from './auth/constants'
+
+const Terminal = ({ signedIn, mode }) => {
+  if (!signedIn) {
     return <SignIn />
+  }
+
+  if (mode === DRIVER) {
+    return <Driver />
+  } else {
+    return <Passenger />
   }
 }
 
