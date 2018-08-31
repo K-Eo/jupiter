@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import App from './App'
+import Terminal from './Terminal'
 import configure from './stores/default'
 import firebase from './firebase'
 import registerServiceWorker from './registerServiceWorker'
@@ -31,9 +30,7 @@ firebase.auth().onAuthStateChanged(state => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Terminal />
   </Provider>,
   document.getElementById('root')
 )
