@@ -2,7 +2,7 @@ import React from 'react'
 
 const Scaffold = ({ children }) => {
   return (
-    <div className="bg-gray d-flex flex-column h-100 justify-content-between">
+    <div className="bg-gray d-flex flex-column h-100">
       {children}
     </div>
   )
