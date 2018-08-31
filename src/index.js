@@ -9,6 +9,7 @@ import registerServiceWorker from './registerServiceWorker'
 import { persistAsync, logout } from './auth/actions'
 
 import './index.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 import 'bootstrap/dist/css/bootstrap.css'
 
 const store = configure()
