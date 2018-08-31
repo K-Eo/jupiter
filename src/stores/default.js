@@ -1,6 +1,8 @@
 import * as redux from 'redux'
 import thunk from 'redux-thunk'
 
+import appReducer from './reducer'
+
 const globalState = {}
 
 const compose = () => {
@@ -15,7 +17,7 @@ const compose = () => {
 }
 
 const configure = (initialState = globalState) => {
-  return redux.createStore(s => s, initialState, compose())
+  return redux.createStore(appReducer, initialState, compose())
 }
 
 export default configure

@@ -7,6 +7,7 @@ import App from './App'
 import configure from './stores/default'
 import firebase from './firebase'
 import registerServiceWorker from './registerServiceWorker'
+import { persistAsync, logout } from './users/actions'
 
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -14,7 +15,18 @@ import 'bootstrap/dist/css/bootstrap.css'
 const store = configure()
 
 firebase.auth().onAuthStateChanged(state => {
-  console.log(state)
+  if (state) {
+    const user = {
+      id: state.uid,
+      name: state.displayName,
+      profile_image: state.photoURL,
+      email: state.email,
+    }
+
+    store.dispatch(persistAsync(user))
+  } else {
+    store.dispatch(logout())
+  }
 })
 
 ReactDOM.render(
