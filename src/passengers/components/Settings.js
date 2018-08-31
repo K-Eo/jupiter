@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Settings = () => {
+const Settings = ({ logout }) => {
   return (
     <React.Fragment>
       <div className="container">
@@ -16,7 +16,10 @@ const Settings = () => {
               <h6 className="mb-0 mt-4">#USER_NAME</h6>
               <p className="text-secondary">#USER_EMAIL</p>
 
-              <button className="btn btn-danger btn-block mt-5">
+              <button
+                className="btn btn-danger btn-block mt-5"
+                onClick={logout}
+              >
                 Cerrar Sesión
               </button>
             </div>

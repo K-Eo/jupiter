@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Nav from './Nav'
 import Home from './HomeContainer'
-import Settings from './Settings'
+import Settings from './SettingsContainer'
 
 class Passenger extends Component {
   render() {

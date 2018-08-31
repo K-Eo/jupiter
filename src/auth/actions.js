@@ -1,6 +1,6 @@
 import * as constants from './constants'
 import * as types from './types'
-import { db } from '../firebase'
+import firebase, { db } from '../firebase'
 
 const login = userId => ({
   type: types.LOGIN,
@@ -16,6 +16,17 @@ export const persistAsync = user => {
     try {
       await db.ref('users/' + user.id).set(user)
       dispatch(login(user.id))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+}
+
+export const logoutAsync = () => {
+  return async dispatch => {
+    try {
+      await firebase.auth().signOut()
+      dispatch(logout())
     } catch (e) {
       console.log(e)
     }
