@@ -11,8 +11,14 @@ import Settings from './SettingsContainer'
 import { fetchTrips } from '../../trips/actions'
 
 class Driver extends Component {
-  componentDidMount() {
-    this.ref = this.props.dispatch(fetchTrips())
+  componentDidUpdate(prevProps) {
+    if (prevProps.listen === false && this.props.listen === true) {
+      this.ref = this.props.dispatch(fetchTrips())
+    }
+
+    if (prevProps.listen === true && this.props.listen === false && this.ref) {
+      this.ref.off()
+    }
   }
 
   componentWillUnmount() {
@@ -38,4 +44,6 @@ class Driver extends Component {
   }
 }
 
-export default connect()(Driver)
+const mapStateToProps = state => state.driver
+
+export default connect(mapStateToProps)(Driver)
