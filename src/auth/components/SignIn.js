@@ -1,20 +1,18 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import DriverSignIn from './DriverSignInContainer'
-import NoMatch from '../../components/NoMatch'
 import PassengerSignIn from './PassengerSignInContainer'
+import { DRIVER } from '../constants'
 
-const SignIn = () => {
-  return (
-    <Router>
-      <Switch>
-        <Route exact={true} path="/" component={PassengerSignIn} />
-        <Route path="/drivers" component={DriverSignIn} />
-        <Route component={NoMatch} />
-      </Switch>
-    </Router>
-  )
+const SignIn = ({ mode }) => {
+  if (mode === DRIVER) {
+    return <DriverSignIn />
+  }
+
+  return <PassengerSignIn />
 }
 
-export default SignIn
+const mapStateToProps = state => state.auth
+
+export default connect(mapStateToProps)(SignIn)
