@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import Home from './Home'
 import Nav from '../../components/Nav'
@@ -7,7 +8,19 @@ import NoMatch from '../../components/NoMatch'
 import Scaffold from '../../components/Scaffold'
 import Settings from './SettingsContainer'
 
+import { fetchTrips } from '../../trips/actions'
+
 class Driver extends Component {
+  componentDidMount() {
+    this.ref = this.props.dispatch(fetchTrips())
+  }
+
+  componentWillUnmount() {
+    if (this.ref) {
+      this.ref.off()
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -25,4 +38,4 @@ class Driver extends Component {
   }
 }
 
-export default Driver
+export default connect()(Driver)

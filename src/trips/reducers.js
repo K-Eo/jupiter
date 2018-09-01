@@ -51,3 +51,17 @@ export const create = (state = createInitialState, action) => {
       return state
   }
 }
+
+export const trips = (state = {}, action) => {
+  switch (action.type) {
+    case types.ADD:
+    case types.UPDATE:
+      return Object.assign({}, state, { [action.trip.id]: action.trip })
+    case types.REMOVE:
+      let clone = Object.assign({}, state)
+      delete clone[action.trip.id]
+      return clone
+    default:
+      return state
+  }
+}

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import TripList from '../../trips/components/TripsListContainer'
+
 const Home = () => {
   return (
     <div className="flex-grow-1 d-flex align-items-center">
@@ -16,6 +18,8 @@ const Home = () => {
                 Recibir Pasajeros
               </button>
             </div>
+
+            <TripList />
           </div>
         </div>
       </div>
