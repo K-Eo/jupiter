@@ -60,3 +60,42 @@ export const cancelAsync = id => {
     }
   }
 }
+
+export const add = trip => ({
+  type: types.ADD,
+  trip: trip,
+})
+
+export const update = trip => ({
+  type: types.UPDATE,
+  trip: trip,
+})
+
+export const remove = trip => ({
+  type: types.REMOVE,
+  trip: trip,
+})
+
+const tripFromSnapshot = snapshot => {
+  return Object.assign({}, snapshot.val(), { id: snapshot.key })
+}
+
+export const fetchTrips = () => {
+  return dispatch => {
+    const tripsRef = db.ref('trips')
+
+    tripsRef.on('child_added', snapshot => {
+      dispatch(add(tripFromSnapshot(snapshot)))
+    })
+
+    tripsRef.on('child_changed', snapshot => {
+      dispatch(update(tripFromSnapshot(snapshot)))
+    })
+
+    tripsRef.on('child_removed', snapshot => {
+      dispatch(remove(tripFromSnapshot(snapshot)))
+    })
+
+    return tripsRef
+  }
+}

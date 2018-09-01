@@ -5,3 +5,7 @@ export const CREATE_FAILURE = 'trips/CREATE_FAILURE'
 export const CANCEL_REQUEST = 'trips/CANCEL_REQUEST'
 export const CANCEL_SUCCESS = 'trips/CANCEL_SUCCESS'
 export const CANCEL_FAILURE = 'trips/CANCEL_FAILURE'
+
+export const ADD = 'trips/ADD'
+export const UPDATE = 'trips/UPDATE'
+export const REMOVE = 'trips/REMOVE'

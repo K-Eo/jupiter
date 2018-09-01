@@ -1,6 +1,7 @@
-import * as types from './types'
 import * as constants from '../constants'
 import * as states from './constants'
+import * as types from './types'
+import { LISTEN_OFF } from '../drivers/types'
 
 const createInitialState = {
   error: '',
@@ -47,6 +48,22 @@ export const create = (state = createInitialState, action) => {
         state: states.FAILURE,
         status: constants.REQUEST_FAILURE,
       })
+    default:
+      return state
+  }
+}
+
+export const trips = (state = {}, action) => {
+  switch (action.type) {
+    case types.ADD:
+    case types.UPDATE:
+      return Object.assign({}, state, { [action.trip.id]: action.trip })
+    case types.REMOVE:
+      let clone = Object.assign({}, state)
+      delete clone[action.trip.id]
+      return clone
+    case LISTEN_OFF:
+      return {}
     default:
       return state
   }

@@ -6,13 +6,15 @@ import Terminal from './Terminal'
 import configure from './stores/default'
 import firebase from './firebase'
 import registerServiceWorker from './registerServiceWorker'
-import { persistAsync, logout } from './auth/actions'
+import { persistAsync, logout, loadAppMode } from './auth/actions'
 
 import './index.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'bootstrap/dist/css/bootstrap.css'
 
 const store = configure()
+
+store.dispatch(loadAppMode())
 
 firebase.auth().onAuthStateChanged(state => {
   if (state) {

@@ -1,10 +1,9 @@
 import React from 'react'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import { Link } from 'react-router-dom'
 
 import firebase, { uiConfig } from '../../firebase'
 
-const DriverSignIn = () => {
+const DriverSignIn = ({ passengerMode }) => {
   return (
     <div className="d-flex justify-content-center align-items-center h-100">
       <div className="container">
@@ -19,9 +18,12 @@ const DriverSignIn = () => {
           />
 
           <div className="text-center mt-4">
-            <Link to="/" className="text-secondary">
-              Regresar
-            </Link>
+            <button
+              className="btn btn-link text-secondary"
+              onClick={passengerMode}
+            >
+              Pasajeros
+            </button>
           </div>
         </div>
       </div>
