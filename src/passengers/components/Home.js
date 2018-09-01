@@ -64,7 +64,10 @@ const Home = props => {
           )}
 
           {props.state === states.CANCELING && (
-            <button className="btn btn-success btn-block btn-lg font-weight-bold">
+            <button
+              className="btn btn-secondary btn-block btn-lg font-weight-bold"
+              disabled
+            >
               Cancelando...
             </button>
           )}
