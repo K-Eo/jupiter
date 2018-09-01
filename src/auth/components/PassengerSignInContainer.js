@@ -1,21 +1,16 @@
-import { compose, lifecycle } from 'recompose'
+import { compose } from 'recompose'
 import { connect } from 'react-redux'
 
 import PassengerSignIn from './PassengerSignIn'
-import { passengerMode } from '../actions'
+import { driverMode } from '../actions'
 
 const mapDispatchToProps = dispatch => ({
-  passengerMode: () => dispatch(passengerMode()),
+  driverMode: () => dispatch(driverMode()),
 })
 
 export default compose(
   connect(
     null,
     mapDispatchToProps
-  ),
-  lifecycle({
-    componentDidMount() {
-      this.props.passengerMode()
-    },
-  })
+  )
 )(PassengerSignIn)
