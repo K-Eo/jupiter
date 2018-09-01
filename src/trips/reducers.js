@@ -1,6 +1,7 @@
-import * as types from './types'
 import * as constants from '../constants'
 import * as states from './constants'
+import * as types from './types'
+import { LISTEN_OFF } from '../drivers/types'
 
 const createInitialState = {
   error: '',
@@ -61,6 +62,8 @@ export const trips = (state = {}, action) => {
       let clone = Object.assign({}, state)
       delete clone[action.trip.id]
       return clone
+    case LISTEN_OFF:
+      return {}
     default:
       return state
   }
