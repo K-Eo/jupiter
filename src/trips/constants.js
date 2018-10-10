@@ -1,5 +1,0 @@
-export const BOOKING = 'trip/state/BOOKING'
-export const CANCELING = 'trip/state/CANCELING'
-export const FAILURE = 'trip/state/FAILURE'
-export const READY = 'trip/state/READY'
-export const WAITING_DRIVER = 'trip/state/WAITING_DRIVER'
