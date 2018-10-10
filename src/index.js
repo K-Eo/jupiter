@@ -1,14 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
+import { BrowserRouter } from 'react-router-dom'
 
 import './index.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import App from './App'
+import Routes from './Routes'
 
 const rootElement = document.getElementById('root')
 
-ReactDOM.render(<App />, rootElement)
+ReactDOM.render(
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>,
+  rootElement
+)
 
 registerServiceWorker()
