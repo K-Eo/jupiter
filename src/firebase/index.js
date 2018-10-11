@@ -3,7 +3,7 @@ import 'firebase/auth'
 import 'firebase/database'
 
 var config = {
-  apiKey: 'AIzaSyC2h3pmaOjPFMR7YUi7NDS7DIuM60jbUGM',
+  apiKey: 'AIzaSyCfwh8hY7xH_Rx5LSAo1MwDfOta8u2ePlc',
   authDomain: 'jupiter-9b937.firebaseapp.com',
   databaseURL: 'https://jupiter-9b937.firebaseio.com',
   projectId: 'jupiter-9b937',

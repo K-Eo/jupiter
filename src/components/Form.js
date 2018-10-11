@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { FormGroup, InputGroup, Button } from '@blueprintjs/core'
+import { FormGroup, InputGroup, Button, Callout } from '@blueprintjs/core'
+import firebase from '../firebase'
 
 class Form extends Component {
   state = {
     email: '',
     password: '',
     canSubmit: false,
+    hasError: false,
+    errorMessage: '',
+    isLoading: false,
   }
 
   onChangeEmail = event => {
@@ -23,8 +27,20 @@ class Form extends Component {
   }
 
   onSubmit = () => {
-    if (this.state.email !== '' && this.state.password !== '') {
-
+    const { email, password } = this.state
+    this.setState({ isLoading: true })
+    if (email !== '' && password !== '') {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(e => console.warn(e))
+        .catch(e =>
+          this.setState({
+            hasError: true,
+            errorMessage: e.message,
+            isLoading: false,
+          })
+        )
     }
   }
 
@@ -35,9 +51,19 @@ class Form extends Component {
   }
 
   render() {
-    const { email, password, canSubmit } = this.state
+    const {
+      email,
+      password,
+      canSubmit,
+      errorMessage,
+      hasError,
+      isLoading,
+    } = this.state
+
     return (
       <div>
+        {hasError && <Callout intent="danger">{errorMessage}</Callout>}
+
         <FormGroup label="Correo electrónico" labelFor="email-input">
           <InputGroup
             id="email-input"
@@ -46,6 +72,7 @@ class Form extends Component {
             autoFocus
             onChange={this.onChangeEmail}
             onKeyUp={this.onEnter}
+            disabled={isLoading}
           />
         </FormGroup>
 
@@ -57,6 +84,7 @@ class Form extends Component {
             value={password}
             onChange={this.onChangePassword}
             onKeyUp={this.onEnter}
+            disabled={isLoading}
           />
         </FormGroup>
 
@@ -65,6 +93,7 @@ class Form extends Component {
           text="Iniciar sesión"
           disabled={!canSubmit}
           onClick={this.onSubmit}
+          loading={isLoading}
         />
       </div>
     )
